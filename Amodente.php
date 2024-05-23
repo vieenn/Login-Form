@@ -29,7 +29,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $username = $_POST["username"];
     $psw = $_POST["psw"];
 
-    // Fetch user from database
+ 
     $stmt = $conn->prepare("SELECT * FROM `user list` WHERE Username = ?");
     $stmt->bind_param("s", $username);
     $stmt->execute();
@@ -39,7 +39,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $row = $result->fetch_assoc();
         if (password_verify($psw, $row["Password"])) {
             $_SESSION["username"] = $row["Username"];
-            header("Location: dashboard.php"); // Redirect after successful login
+            header("Location: dashboard.php"); 
             exit();
         } else {
             $error = "Invalid username or password!";
